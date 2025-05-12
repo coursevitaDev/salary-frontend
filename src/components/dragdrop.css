@@ -1,0 +1,146 @@
+.drag-drop {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: 0.5s ease-in-out;
+  }
+  .document-uploader {
+    border: 2px dashed grey;
+    background-color: transparent;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+
+    &.active {
+      border-color: rgba(0,0,0,0.7);;
+    }
+  
+    .upload-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+  
+      svg {
+        font-size: 36px;
+        margin-right: 1rem;
+      }
+  
+      div {
+        p {
+          margin: 0;
+          font-size: 16px;
+          font-weight: 450;
+          color:Grey;
+        }
+  
+        p:first-child {
+          font-weight: bold;
+        }
+
+      }
+    }
+  
+    .file-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+      height: 5vh;
+      &__container {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
+    }
+  
+    .file-item {
+      display: flex;
+      
+      align-items: center;
+      padding: 0.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      position: relative;
+
+      .file-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        flex: 1;
+        
+        p {
+          margin: 0;
+          font-size: 20px;
+          color: grey;
+          font-weight: 550;
+          letter-spacing: -1px;
+        }
+      }
+  
+      .file-actions {
+        cursor: pointer;
+  
+        svg {
+          position: relative;
+          top:4px;
+          font-size: 20px;
+          color: #888;
+        }
+  
+        &:hover {
+          svg {
+            color: #d44;
+          }
+        }
+      }
+    }
+  
+    .browse-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      border: 1px solid grey;
+      border-radius: 8px;
+      font-weight: 550;
+      color:grey;
+      letter-spacing: -1px;
+      cursor: pointer;
+      background-color: var(--primary-color);
+      &:hover {
+        background-color: transparent;
+        color:red;
+        border-color: red;
+      }
+    }
+  
+    .success-file {
+      display: flex;
+      align-items: center;
+      color: rgba(0,0,0,0.7);
+  
+      p {
+        margin: 0;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+  
+    input[type="file"] {
+      display: none;
+    }
+  }
+
+  .drag-drop:hover{
+    cursor: pointer;
+    .document-uploader{
+      p{
+        color:rgba(0,0,0,0.7);
+      }
+    }
+  }
