@@ -12,14 +12,12 @@ import { IoIosInformationCircleOutline } from "react-icons/io";
 
 function App() {
   const [ClickInfoVisible, setClickInfoVisible] = useState(false)
-  const [extracted_skills, setExtracted] = useState()
   const [file, setfile] = useState();
-  const [Skill, setSkill] = useState('');
+  const [Skill, ] = useState("");
   const [Skills, setSkills] = useState([])
   const [result, setResult] = useState(null);
   const salaryEstimateRef = useRef(null);
   const [certifcates, setCertificates] = useState([]);
-  const [missingSkills, setMissingSkills] = useState([]);
   const [skillsLoading, setSkillsLoading] = useState(false)
   const [resultsLoading, setResultsLoading] = useState(false)
   const [refreshLoading, setRefreshLoading] = useState(false)
@@ -43,27 +41,27 @@ function App() {
   useEffect(() => {
     forceRender((prev) => prev + 1);
   }, [skillsLoading]);
-  const fetchSkillsData = async (skills) => {
-    try {
-      const response = await fetch("https://salary-predictor-backend-x7ej.onrender.com/search", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ skills }),
-      });
+  // const fetchSkillsData = async (skills) => {
+  //   try {
+  //     const response = await fetch("https://salary-predictor-backend-x7ej.onrender.com/search", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ skills }),
+  //     });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
+  //     if (!response.ok) {
+  //       throw new Error("Failed to fetch data");
+  //     }
 
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      return null;
-    }
-  };
+  //     const data = await response.json();
+  //     return data;
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //     return null;
+  //   }
+  // };
 
 
 const handleRefresh = async () => {
@@ -138,10 +136,10 @@ const handleRefresh = async () => {
     }
   };
 
-  const [animationData, setAnimationData] = useState(null);
+
   
   const [masterSkillList, setmasterSkillLiSt] = useState([]);
-  const [suggestions, setSuggestions] = useState([]);
+  const [, setSuggestions] = useState([]);
   // const handleKeyDown = (event) => {
   //   if (event.key === "Enter") {
   //     setSkill()
@@ -183,16 +181,41 @@ const handleRefresh = async () => {
   }, [Skill, masterSkillList]);
 
 
-  useEffect(() => {
-    if (file) {
-      setSkillsLoading(true)
-      filesubmit();
+ useEffect(() => {
+  const filesubmit = async () => {
+    if (!file) return;
+
+    try {
+      setSkills([]);
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await axios.post("https://salary-predictor-backend-x7ej.onrender.com/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log("File uploaded successfully:", response.data);
+      setSkills(response.data.skills);
+      setCertificates(response.data.certificates);
+      setExperience(response.data.experiences);
+      setSkillsLoading(false);
+    } catch (error) {
+      console.error("Error uploading file:", error.response?.data || error);
     }
-  }, [file])
-  const closeHandle = () => {
-    setfile(null)
-    setExtracted(null)
+  };
+
+  if (file) {
+    setSkillsLoading(true);
+    filesubmit();
   }
+}, [file]);
+
+  // const closeHandle = () => {
+  //   setfile(null)
+  //   setExtracted(null)
+  // }
 
 
   const handleFilesSelected = (files) => {
@@ -206,37 +229,7 @@ const handleRefresh = async () => {
 
 
 
-  const filesubmit = async () => {
-    if (!file) {
-      console.error("No file selected");
-      return;
-    }
-
-
-    try {
-      setSkills([])
-
-      const formData = new FormData();
-      formData.append("file", file);
-
-      console.log("Sending file:", file);
-
-      const response = await axios.post("https://salary-predictor-backend-x7ej.onrender.com/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      console.log("File uploaded successfully:", response.data);
-      setSkills(response.data.skills)
-      setCertificates(response.data.certificates)
-      setExperience(response.data.experiences)
-      setSkillsLoading(false);
-
-    } catch (error) {
-      console.error("Error uploading file:", error.response?.data || error);
-    }
-  };
+ 
 
   const [relevantExperiences,setrelevantExperiences] = useState([])
 
@@ -267,35 +260,34 @@ const handleRefresh = async () => {
 
 
 
-    const [activeIndex, setActiveIndex] = useState(-1);
   
-    const handleKeyDown = (e) => {
-      if (suggestions.length === 0) return;
+  //   const handleKeyDown = (e) => {
+  //     if (suggestions.length === 0) return;
   
-      if (e.key === "ArrowDown") {
-        setActiveIndex((prev) => (prev < suggestions.length - 1 ? prev + 1 : 0));
-      } else if (e.key === "ArrowUp") {
-        setActiveIndex((prev) => (prev > 0 ? prev - 1 : suggestions.length - 1));
-      } else if (e.key === "Enter" && activeIndex >= 0) {
-        let selectedSkill = activeIndex >= 0 ? suggestions[activeIndex] : Skill;
+  //     if (e.key === "ArrowDown") {
+  //       setActiveIndex((prev) => (prev < suggestions.length - 1 ? prev + 1 : 0));
+  //     } else if (e.key === "ArrowUp") {
+  //       setActiveIndex((prev) => (prev > 0 ? prev - 1 : suggestions.length - 1));
+  //     } else if (e.key === "Enter" && activeIndex >= 0) {
+  //       let selectedSkill = activeIndex >= 0 ? suggestions[activeIndex] : Skill;
 
-      if (selectedSkill) {
-        setSkill(selectedSkill);
-        setSuggestions([]);
-        setActiveIndex(-1);
+  //     if (selectedSkill) {
+  //       setSkill(selectedSkill);
+  //       setSuggestions([]);
+  //       setActiveIndex(-1);
 
-        const filtered = masterSkillList.filter((x) =>
-          x.toLowerCase().startsWith(selectedSkill.toLowerCase())
-        );
+  //       const filtered = masterSkillList.filter((x) =>
+  //         x.toLowerCase().startsWith(selectedSkill.toLowerCase())
+  //       );
 
-        if (filtered.length > 0) {
-          setSkills([...Skills, filtered[0]]);
-        } else {
-          alert("Skill not found");
-        }
-      }
-    }
-  }
+  //       if (filtered.length > 0) {
+  //         setSkills([...Skills, filtered[0]]);
+  //       } else {
+  //         alert("Skill not found");
+  //       }
+  //     }
+  //   }
+  // }
   
 
   return (

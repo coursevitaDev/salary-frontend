@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { AiOutlineCheckCircle, AiOutlineCloudUpload } from "react-icons/ai";
+import { AiOutlineCloudUpload } from "react-icons/ai";
 import { MdClear } from "react-icons/md";
 import "./dragdrop.css";
 
@@ -54,7 +54,7 @@ const DragNdrop = ({
               </p>
             </div>
           </div>
-          {files.length==0&&(<>
+          {files.length===0&&(<>
             <input
             type="file"
             hidden
