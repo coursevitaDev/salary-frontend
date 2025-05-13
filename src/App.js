@@ -146,7 +146,7 @@ const handleRefresh = async () => {
 const handleSearch = async () => {
   if (
     !Array.isArray(Skills) || Skills.length === 0 ||
-    !Array.isArray(certificates) || certificates.length === 0 ||
+    !Array.isArray(certifcates) || certifcates.length === 0 ||
     !Array.isArray(Experience) || Experience.length === 0 ||
     !selectedCategory
   ) {
@@ -162,7 +162,7 @@ const handleSearch = async () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         skills: Skills,
-        certificates: certificates,
+        certificates: certifcates,
         experience: Experience,
         selectedCategory,
         selectedEXPCategory
