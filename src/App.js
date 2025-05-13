@@ -400,7 +400,7 @@ const handleRefresh = async () => {
             {skillsLoading === true && (
               <div className='loading-Container'>
                 <span style={{ fontSize: "40px", fontWeight: "550", color: "grey", letterSpacing: "-2px" }}>Loading</span>
-                <div ><span class="loader"></span></div>
+                <div ><span className="loader"></span></div>
               </div>
             )}
 
@@ -458,22 +458,22 @@ const handleRefresh = async () => {
             {result.map((key, x) => (
               <div className='item-body' onClick={() => handleKnowMore(x)} style={{ padding: "30px", display: "flex", flexDirection: "column" }}>
                 <div className='item-title-container'>
-                  <span class="item-role">
+                  <span className="item-role">
                     {result[x].category}
                   </span>
                 </div>
                 <div stlye={{ display: "flex", flexDirection: "row" }}>
-                  <span class="item-skill-score">
+                  <span className="item-skill-score">
                     Skill score - {result[x]["Skill Score"]}%
                   </span>
-                  <span class="item-skill-match">
+                  <span className="item-skill-match">
                     Skill match - {result[x]["Skill Match"]}%
                   </span>
                 </div>
                 <span style={{ marginTop: "40px", fontSize: "20px", fontWeight: "450", color: "grey" }}>
                   Your salary estimation
                 </span>
-                <span class='item-salary-estimation'>
+                <span className='item-salary-estimation'>
                   <span style={{ fontWeight: "550" }}> &#8377; 
                   {result[x].salary_estimate.every(salary => typeof salary === "number") // Check if all values are numbers
     ? (result[x].salary_estimate.map(salary => salary.toFixed(2)).join("L - ") + "L")
@@ -492,17 +492,17 @@ const handleRefresh = async () => {
       <div ref={salaryEstimateRef}>
         {knowMore && (
           <>
-            <div class="estimation-container">
-              <div class="text-content">
-                <div class="body">
-                  <span class="role">
+            <div className="estimation-container">
+              <div className="text-content">
+                <div className="body">
+                  <span className="role">
                     {result[knowMoreIndex].category}
                   </span>
                   <div stlye={{ display: "flex", flexDirection: "row" }}>
-                    <span class="skill-score">
+                    <span className="skill-score">
                       Skill score - {result[knowMoreIndex]["Skill Score"]}%
                     </span>
-                    <span class="skill-match">
+                    <span className="skill-match">
                       Skill match - {result[knowMoreIndex]["Skill Match"]}%
                     </span>
                 <span className="certification-match">
@@ -516,7 +516,7 @@ const handleRefresh = async () => {
                   (
                     <>
        
-                      <div class="exp">
+                      <div className="exp">
                         Experience
                       </div>
                       <span className="certification-match" style={{display:"flex", flexDirection:"column", marginTop:"10px", overflow:"hidden",
@@ -542,7 +542,7 @@ const handleRefresh = async () => {
                   <span style={{ marginTop: '30px' }}>
                     Base pay
                   </span>
-                  <span class='base-pay'>
+                  <span className='base-pay'>
                     <span style={{ color: "green" }}> <span style={{ fontWeight: "550" }}> &#8377;
                        {/* {result[knowMoreIndex]["Base pay"].map(salary => (typeof salary === "number" ? salary.toFixed(2) : salary))}L */}
                        {result[knowMoreIndex]['Base pay'].every(salary => typeof salary === "number") // Check if all values are numbers
@@ -554,7 +554,7 @@ const handleRefresh = async () => {
                   <span style={{ marginTop: "40px" }}>
                     Your salary estimation
                   </span>
-                  <span class='salary-estimation'>
+                  <span className='salary-estimation'>
                     <span style={{ fontWeight: "550" }}> &#8377;
                     {result[knowMoreIndex].salary_estimate.every(salary => typeof salary === "number") // Check if all values are numbers
     ? (result[knowMoreIndex].salary_estimate.map(salary => salary.toFixed(2)).join("L - ") + "L")
