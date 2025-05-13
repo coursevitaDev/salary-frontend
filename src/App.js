@@ -108,77 +108,33 @@ const handleRefresh = async () => {
 
 
 
-// const handleSearch = async () => {
-//   if (
-//     !Array.isArray(Skills) || Skills.length === 0 ||
-//     !Array.isArray(certificates) || certificates.length === 0 ||
-//     !Array.isArray(Experience) || Experience.length === 0 ||
-//     !selectedCategory
-//   ) {
-//     alert("Invalid input: Ensure Skills, Certificates, Experience, and selectedCategory are properly set.");
-//     return;
-//   }
+  const handleSearch = async () => {
+    if (
+      !Array.isArray(Skills) || Skills.length === 0 ||
+      !Experience || 
+      !selectedCategory
+    ) {
+      alert("Invalid input: Ensure Skills, certificates, Experience, and selectedCategory are properly set.");
+      return;
+    }
 
-//   try {
-//     setResultsLoading(true);
+    try {
+      setResultsLoading(true)
+      const response = await fetch("https://salary-predictor-backend-x7ej.onrender.com/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ Skills, certifcates, Experience, selectedCategory, selectedEXPCategory }), // Pass skills directly
+      });
 
-//     const response = await fetch("https://salary-predictor-backend-x7ej.onrender.com/search", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         skills: Skills,
-//         certificates: certificates,
-//         experience: Experience,
-//         selectedCategory,
-//         selectedEXPCategory
-//       }),
-//     });
+      const data = await response.json();
+      setResult(data);
+      console.log(data)
+      setResultsLoading(false)
 
-//     const data = await response.json();
-//     setResult(data);
-//     console.log(data);
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//   } finally {
-//     setResultsLoading(false);
-//   }
-// };
-const handleSearch = async () => {
-  if (
-    !Array.isArray(Skills) || Skills.length === 0 ||
-    !Array.isArray(certifcates) || certifcates.length === 0 ||
-    !Array.isArray(Experience) || Experience.length === 0 ||
-    !selectedCategory
-  ) {
-    alert("Invalid input: Ensure Skills, Certificates, Experience, and selectedCategory are properly set.");
-    return;
-  }
-
-  try {
-    setResultsLoading(true);
-
-    const response = await fetch("https://salary-predictor-backend-x7ej.onrender.com/search", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        skills: Skills,
-        certificates: certifcates,
-        experience: Experience,
-        selectedCategory,
-        selectedEXPCategory
-      }),
-    });
-
-    const data = await response.json();
-    setResult(data);
-    console.log(data);
-  } catch (error) {
-    console.error("Error fetching data:", error);
-  } finally {
-    setResultsLoading(false);
-  }
-};
-
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
 
   
