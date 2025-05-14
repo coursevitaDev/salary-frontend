@@ -120,7 +120,7 @@ function App() {
 
     try {
       setResultsLoading(true)
-      const response = await fetch("https://salary-predictor-backend-x7ej.onrender.com/search", {
+      const response = await fetch("https://salary-predictor-backend-bp2j.onrender.com/search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ Skills, certifcates, Experience, selectedCategory, selectedEXPCategory }), // Pass skills directly
