@@ -176,7 +176,7 @@ function App() {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await axios.post("https://salary-predictor-backend-x7ej.onrender.com/upload", formData, {
+      const response = await axios.post("https://salary-predictor-backend-bp2j.onrender.com/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
