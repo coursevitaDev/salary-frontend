@@ -1,0 +1,158 @@
+/* Wrapper to center everything */
+.salary-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  background-color: #FAFAFB;
+}
+
+/* Title */
+.salary-wrapper h1 {
+  font-size: 56px;
+  font-weight: 700;
+  color: #2F1C6A;
+  margin-bottom: 40px;
+}
+
+/* Layout grid for inputs + skills */
+.salary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  width: 100%;
+  max-width: 1200px;
+  align-items: flex-start;
+}
+
+/* Card styles */
+.salary-card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+}
+
+/* Input label */
+.salary-card label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Input, Select */
+.salary-card select, 
+.salary-card input[type="text"],
+.salary-card input[type="number"] {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+}
+
+.salary-card select:focus,
+.salary-card input:focus {
+  border-color: #7234F7;
+  background-color: #fff;
+  outline: none;
+}
+
+/* Resume upload box */
+.resume-upload {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 14px;
+  text-align: center;
+  color: #666;
+  background-color: #f9f9f9;
+  margin-bottom: 24px;
+}
+
+.resume-upload:hover {
+  border-color: #7234F7;
+  background-color: #fff;
+  color: black;
+}
+
+/* Skills section */
+.skills-panel {
+  background-color: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+}
+
+.skills-panel-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #2F1C6A;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skills-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  margin-top: 10px;
+}
+
+/* Each skill tag */
+.skill-tag {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  color: #333;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.skill-tag:hover {
+  background-color: #e8e8e8;
+  border-color: #999;
+}
+
+/* Estimate Button */
+.estimate-btn {
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #7234F7;
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.estimate-btn:hover {
+  background-color: #5e26c1;
+}
+
+/* Certifications Info */
+.certifications-count {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #444;
+}

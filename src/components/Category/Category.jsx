@@ -26,35 +26,39 @@ const Category = ({ onCategorySelect }) => {
     };
 
     return (
-        <div className="category-container">
-            <span className="title">Category Selection :</span>
-            <input 
-                type="text" 
-                className="category-input"
-                placeholder="Search category..."
-                value={category} 
-                onChange={(e) => setCategory(e.target.value)}
-                onFocus={() => setIsCategoryOpen(true)}
-                onBlur={() => setTimeout(() => setIsCategoryOpen(false), 200)}
-            />
-            {isCategoryOpen && (
-                <ul className="category-list">
-                    {filteredCategories.length > 0 ? (
-                        filteredCategories.map((cat, index) => (
-                            <li 
-                                key={index} 
-                                className="category-item"
-                                onClick={() => handleCategorySelect(cat)}
-                            >
-                                {cat}
-                            </li>
-                        ))
-                    ) : (
-                        <li className="category-no-match">No matches found</li>
-                    )}
-                </ul>
-            )}
-        </div>
+       <div className="relative w-full max-w-sm">
+  <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
+    Category Selection:
+  </label>
+  <input
+    type="text"
+    id="category"
+    className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-sm"
+    placeholder="Search category..."
+    value={category}
+    onChange={(e) => setCategory(e.target.value)}
+    onFocus={() => setIsCategoryOpen(true)}
+    onBlur={() => setTimeout(() => setIsCategoryOpen(false), 200)}
+  />
+  {isCategoryOpen && (
+    <ul className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-60 overflow-y-auto text-sm">
+      {filteredCategories.length > 0 ? (
+        filteredCategories.map((cat, index) => (
+          <li
+            key={index}
+            onClick={() => handleCategorySelect(cat)}
+            className="px-4 py-2 hover:bg-purple-50 cursor-pointer text-gray-700"
+          >
+            {cat}
+          </li>
+        ))
+      ) : (
+        <li className="px-4 py-2 text-gray-400 italic">No matches found</li>
+      )}
+    </ul>
+  )}
+</div>
+
     );
 };
 

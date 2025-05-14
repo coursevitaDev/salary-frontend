@@ -35,61 +35,62 @@ const DragNdrop = ({
   }, [files, onFilesSelected]);
 
   return (
-    <section className="drag-drop" style={{ width: width, height: height }}>
-      <div
-        className={`document-uploader ${
-          files.length > 0 ? "upload-box active" : "upload-box"
-        }`}
-        onDrop={handleDrop}
-        onDragOver={(event) => event.preventDefault()}
-      >
-        <>
-          <div className="upload-info">
-            <AiOutlineCloudUpload />
-            <div>
-              <p>Drag and drop your files here</p>
-              <p>
-                Limit 15MB per file. Supported files: .PDF, .DOCX, .PPTX, .TXT,
-                .XLSX
-              </p>
-            </div>
-          </div>
-          {files.length===0&&(<>
-            <input
-            type="file"
-            hidden
-            id="browse"
-            onChange={handleFileChange}
-            accept=".pdf,.docx,.pptx,.txt,.xlsx"
-            multiple
-          />
-          <label htmlFor="browse" className="browse-btn">
-            Browse files
-          </label>
-          </>)}
-          
-        </>
-
-        {files.length > 0 && (
-          <div className="file-list">
-            <div className="file-list__container">
-              {files.map((file, index) => (
-                <div className="file-item" key={index}>
-                  <div className="file-info">
-                    <p>{file.name}</p>
-                    {/* <p>{file.type}</p> */}
-                  </div>
-                  <div className="file-actions">
-                    <MdClear onClick={() => handleRemoveFile(index)} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
+ <section className="w-full" style={{ width: width, height: height }}>
+  <div
+    className={`border-2 border-dashed rounded-xl p-6 transition-all duration-200 flex flex-col justify-center items-center gap-3 ${
+      files.length > 0 ? "border-purple-500 bg-purple-50" : "border-gray-300 bg-white"
+    }`}
+    onDrop={handleDrop}
+    onDragOver={(event) => event.preventDefault()}
+  >
+    <div className="text-center text-sm text-gray-600">
+      <div className="text-3xl text-purple-700 mb-2 flex justify-center">
+        <AiOutlineCloudUpload />
       </div>
-    </section>
+      <p className="font-medium">Drag and drop your files here</p>
+      <p className="text-xs text-gray-400">
+        Limit 15MB per file. Supported: .PDF, .DOCX, .PPTX, .TXT, .XLSX
+      </p>
+    </div>
+
+    {files.length === 0 && (
+      <>
+        <input
+          type="file"
+          hidden
+          id="browse"
+          onChange={handleFileChange}
+          accept=".pdf,.docx,.pptx,.txt,.xlsx"
+          multiple
+        />
+        <label
+          htmlFor="browse"
+          className="mt-3 inline-block px-4 py-2 bg-purple-700 text-white text-sm font-medium rounded-lg cursor-pointer hover:bg-purple-800 transition"
+        >
+          Browse files
+        </label>
+      </>
+    )}
+
+    {files.length > 0 && (
+      <div className="w-full mt-4 space-y-2">
+        {files.map((file, index) => (
+          <div
+            key={index}
+            className="flex justify-between items-center bg-white border border-gray-200 rounded-lg px-4 py-2 shadow-sm"
+          >
+            <span className="text-sm text-gray-800 truncate">{file.name}</span>
+            <MdClear
+              onClick={() => handleRemoveFile(index)}
+              className="text-red-500 cursor-pointer hover:text-red-700"
+            />
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
   );
 };
 
